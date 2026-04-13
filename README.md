@@ -1,7 +1,5 @@
 # 🛒 GoCart – Fullstack E-Commerce Website
 
-![gocart](./assets/preview.png)
-
 ## 📌 Overview
 
 **GoCart** is a full-stack e-commerce web application inspired by Amazon. It provides a complete online shopping experience including product browsing, cart management, secure authentication, and order processing.
