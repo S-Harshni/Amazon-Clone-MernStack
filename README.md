@@ -1,5 +1,11 @@
 # 🛒 Amazon Clone MERN Stack – Fullstack E-Commerce Website
 
+<!-- live-links -->
+> 🔗 **Live demo:** [s-harshni.github.io/Amazon-Clone-MernStack](https://s-harshni.github.io/Amazon-Clone-MernStack/)  
+> 🔑 **Demo login:** `user@example.com` / `123456` (admin: `admin@example.com` / `123456`). Demo data is stored in your browser only.  
+> 👤 **Portfolio:** [s-harshni.github.io/S-Harshni](https://s-harshni.github.io/S-Harshni/)  
+<!-- live-links -->
+
 ## 📌 Overview
 
 **Amazon Clone MERN Stack** is a full-stack e-commerce web application inspired by Amazon. It provides a complete online shopping experience including product browsing, cart management, secure authentication, and order processing.
