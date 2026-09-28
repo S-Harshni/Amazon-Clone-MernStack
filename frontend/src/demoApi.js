@@ -5,7 +5,7 @@
 import axios from 'axios';
 import seedProducts from './demoSeed.json';
 
-const DB_KEY = 'amazona-demo-db-v1';
+const DB_KEY = 'amazona-demo-db-v2';
 const PUBLIC_URL = process.env.PUBLIC_URL || '';
 const PAGE_SIZE = 3;
 
@@ -26,8 +26,39 @@ function seed() {
       createdAt,
       updatedAt: createdAt,
     })),
-    orders: [],
+    orders: sampleOrders(),
   };
+}
+
+// A couple of weeks of paid sample orders so the admin dashboard has data.
+function sampleOrders() {
+  const products = seedProducts.map((p) => ({ ...p, image: PUBLIC_URL + p.image }));
+  const orders = [];
+  let n = 0;
+  for (let daysAgo = 13; daysAgo >= 1; daysAgo--) {
+    const count = 1 + ((daysAgo * 7) % 3);
+    for (let k = 0; k < count; k++) {
+      const p = products[(daysAgo + k) % products.length];
+      const qty = 1 + ((daysAgo + k) % 2);
+      const itemsPrice = p.price * qty;
+      const shippingPrice = itemsPrice > 100 ? 0 : 10;
+      const taxPrice = Math.round(itemsPrice * 0.15 * 100) / 100;
+      const date = new Date(Date.now() - daysAgo * 86400000 + k * 3600000).toISOString();
+      orders.push({
+        _id: 'sample' + ++n,
+        orderItems: [{ ...p, quantity: qty, product: p._id }],
+        shippingAddress: { fullName: 'Sample Customer', address: '1 Demo Street', city: 'Chennai', postalCode: '600001', country: 'India' },
+        paymentMethod: 'PayPal',
+        itemsPrice, shippingPrice, taxPrice,
+        totalPrice: itemsPrice + shippingPrice + taxPrice,
+        user: 'u2',
+        isPaid: true, paidAt: date,
+        isDelivered: daysAgo > 3, deliveredAt: daysAgo > 3 ? date : undefined,
+        createdAt: date,
+      });
+    }
+  }
+  return orders;
 }
 
 function load() {
