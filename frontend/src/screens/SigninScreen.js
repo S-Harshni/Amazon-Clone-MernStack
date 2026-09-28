@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
+import { isDemo } from '../demoApi';
 
 export default function SigninScreen() {
   const navigate = useNavigate();
@@ -47,6 +48,13 @@ export default function SigninScreen() {
         <title>Sign In</title>
       </Helmet>
       <h1 className="my-3">Sign In</h1>
+      {isDemo && (
+        <div className="alert alert-info">
+          Live demo: sign in as <strong>admin@example.com</strong> or{' '}
+          <strong>user@example.com</strong> (password <strong>123456</strong>),
+          or create a new account.
+        </div>
+      )}
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>

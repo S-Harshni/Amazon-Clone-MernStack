@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { isDemo } from '../demoApi';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -304,7 +305,27 @@ export default function OrderScreen() {
                 </ListGroup.Item>
                 {!order.isPaid && (
                   <ListGroup.Item>
-                    {isPending ? (
+                    {isDemo ? (
+                      <div className="d-grid">
+                        <Button
+                          type="button"
+                          onClick={() =>
+                            onApprove(null, {
+                              order: {
+                                capture: async () => ({
+                                  id: 'DEMO-' + Date.now(),
+                                  status: 'COMPLETED',
+                                  update_time: new Date().toISOString(),
+                                  email_address: userInfo.email,
+                                }),
+                              },
+                            })
+                          }
+                        >
+                          Pay Now (demo)
+                        </Button>
+                      </div>
+                    ) : isPending ? (
                       <LoadingBox />
                     ) : (
                       <div>

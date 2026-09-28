@@ -7,6 +7,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StoreProvider } from './Store';
+import { installDemoApi, isDemo } from './demoApi';
+
+if (isDemo) installDemoApi();
 
 const root = createRoot(document.getElementById('root'));
 
