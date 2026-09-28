@@ -118,6 +118,10 @@ frontend/
 | PUT | `/api/orders/:id/pay` · `/api/orders/:id/deliver` | Payment / delivery status |
 | GET | `/api/orders/summary` | Dashboard aggregates (admin) |
 
+## Credits
+
+Built by following Basir Jafarzadeh's MERN Amazona course ([basir/mern-amazona](https://github.com/basir/mern-amazona)). This repository adds a static in-browser demo API with seeded sample data, GitHub Pages deployment and documentation.
+
 ## Author
 
 **S Harshni** · [Portfolio](https://s-harshni.github.io/S-Harshni/) · [LinkedIn](https://www.linkedin.com/in/ks-harshni/) · [GitHub](https://github.com/S-Harshni)
